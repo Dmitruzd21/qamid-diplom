@@ -39,8 +39,8 @@ public class CommentEditingTests {
     @Test // проходит на эмуляторе, но падает, при запуске всех тестов
     @DisplayName("Редактирование комментария в заявке при валидных данных (кириллические символы)")
     public void shouldEditCommentOfClaim() throws InterruptedException {
-        String comment = "QA Midd108";
-        String commentForEditing = "QA Midd222s";
+        String comment = "QA Midd1088";
+        String commentForEditing = "QA Midd222s8";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);

@@ -45,7 +45,7 @@ public class CommentCreationTests {
     @Test // тест проходит, но падает при запуске всех тестов
     @DisplayName("Добавление нового комментария заявки с введением валидных данных")
     public void shouldCreateCommentWithValidData() throws InterruptedException {
-        String comment = "QA Midgds1";
+        String comment = "QA Midgdsr1";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
@@ -75,7 +75,7 @@ public class CommentCreationTests {
     @Test  // нестабильный тест при запуске всех тестов на эмуляторе (отдельно проходит)
     @DisplayName("Отмена добавления нового комментария")
     public void shouldCancelCommentCreation() throws InterruptedException {
-        String comment = "QA Midfr1";
+        String comment = "QA Midfrr1";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);

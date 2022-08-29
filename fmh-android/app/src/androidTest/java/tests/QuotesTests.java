@@ -30,7 +30,7 @@ public class QuotesTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test

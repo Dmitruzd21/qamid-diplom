@@ -25,7 +25,7 @@ public class QuotesPage {
 
     public static void findQuoteWith(String title) {
         Allure.step("Поск цитаты с заголовком");
-        MainHelper.isDisplayedWithSwipe(onView(withText(title)),3,true);
+        MainHelper.isDisplayedWithSwipe(onView(withText(title)), 3, true);
     }
 
 }

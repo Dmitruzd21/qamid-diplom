@@ -34,7 +34,7 @@ public class NewsTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test
@@ -69,14 +69,14 @@ public class NewsTests {
         String currentDate = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         NewsPage.deleteNews(chosenCategory);
         ControlPanelPage.goToNewsBlock();
         Thread.sleep(3000);
-        NewsPage.checkThatNewsDoesNotExist(chosenCategory,description);
+        NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
     }
 }
 

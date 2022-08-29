@@ -78,7 +78,7 @@ public class MainHelper {
                 if (recycler == 1) {
                     onView(allOf(withId(R.id.news_list_recycler_view), isDisplayed())).perform(actionOnItemAtPosition(n, swipeUp()));
                 }
-                if (recycler == 2){
+                if (recycler == 2) {
                     onView(allOf(withId(R.id.claim_list_recycler_view), isDisplayed())).perform(actionOnItemAtPosition(n, swipeUp()));
                 }
                 if (recycler == 3) {

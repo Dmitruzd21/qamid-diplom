@@ -35,12 +35,16 @@ https://github.com/Dmitruzd21/qamid-diplom/tree/master/fmh-android
 
 **2 способ (с выгрузкой Allure-results)**
 
-Повторить предыдущие шаги и далее:
+1. Склонировать репозиторий https://github.com/Dmitruzd21/qamid-diplom
 
-5. Во вкладке Project левым кликом мыши (или аналогичным образом) выделить каталог app.
+2. Открыть проект fmh-android в Android Studio.
 
-6. Запустить тесты сочетанием клавиш Shift+Ctl+R (Mac) или Shift+Ctrl+F10 (Windows).
+3. Запустить эмулятор или подключить устройство для тестирования.
 
-7. По завершению, выгрузите каталог /data/data/ru.iteco.fmhandroid/files/allure-results с эмулятора или тестового устройства.
+4. Во вкладке Project левым кликом мыши (или аналогичным образом) выделить каталог app.
 
-8. Выполните локально консольную команду allure serve находясь на уровень выше каталога allure-results.
+5. Запустить тесты сочетанием клавиш Shift+Ctl+R (Mac) или Shift+Ctrl+F10 (Windows).
+
+6. По завершению, выгрузите каталог /data/data/ru.iteco.fmhandroid/files/allure-results с эмулятора или тестового устройства.
+
+7. Выполните локально консольную команду allure serve находясь на уровень выше каталога allure-results.

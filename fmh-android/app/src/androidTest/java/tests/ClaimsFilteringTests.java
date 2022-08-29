@@ -30,7 +30,7 @@ public class ClaimsFilteringTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test  // крайне нестабильный тест - падает по техническим причинам (проблемы со свайпом)

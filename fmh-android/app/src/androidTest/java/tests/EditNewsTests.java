@@ -45,10 +45,10 @@ public class EditNewsTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
-    public void createNewsWithActiveStatus () {
+    public void createNewsWithActiveStatus() {
         Allure.step("Создание новости с активным статусом");
         // общие параметры для создания/редактирования новости
         String emptyCategory = "no";
@@ -65,7 +65,7 @@ public class EditNewsTests {
         String description = "Description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
     }
 
@@ -79,7 +79,7 @@ public class EditNewsTests {
         createNewsWithActiveStatus();
         ControlPanelPage.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         NewsPage.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для изменения статуса выбрана именно ранее созданная новость
         NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
@@ -97,7 +97,7 @@ public class EditNewsTests {
     @Test // низкая стабильностьь теста
     @DisplayName("Редактирование новости при заполнении всех полей валидными данными (кирилические символы, текущая дата, текущее время в формате циферблата)")
     public void editNewsWithValidData() throws InterruptedException {
-       // общие параметры для создания/редактирования новости
+        // общие параметры для создания/редактирования новости
         String emptyCategory = "no";
         String withCategoryChoice = "yes";
         String category = "no";
@@ -118,18 +118,18 @@ public class EditNewsTests {
         createNewsWithActiveStatus();
         ControlPanelPage.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         // переход к редактированию новости
         NewsPage.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для редактирования выбрана именно ранее созданная новость
         Thread.sleep(2000);
         NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
         // редактирование новости
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,newChosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  newDescription);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, newChosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, newDescription);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
         // проверяем,что новость, действительно, отредактирована (данные обновились)
-        NewsPage.checkFirstNewsDataAfterEdit(newChosenCategory,newDescription,currentDate);
+        NewsPage.checkFirstNewsDataAfterEdit(newChosenCategory, newDescription, currentDate);
         // удаление новости
         NewsPage.goToEditingModeForNews();
         NewsPage.deleteNews(newChosenCategory);
@@ -148,7 +148,7 @@ public class EditNewsTests {
         createNewsWithActiveStatus();
         ControlPanelPage.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         // переход к редактированию новости
         NewsPage.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для изменения статуса выбрана именно ранее созданная новость
@@ -161,11 +161,11 @@ public class EditNewsTests {
         ControlPanelPage.goToNewsBlock();
         NewsScreen.editNewsButton.perform(click());
         // проверка, что новость имеет статус "На активна"
-        NewsPage.checkNewsStatus(chosenCategory,currentDate, finalStatus);
+        NewsPage.checkNewsStatus(chosenCategory, currentDate, finalStatus);
         // проверка, что новость исчезла из панели новостей (допущение, что сохраненная ноовсть всегда показывается первой)
         ControlPanelPage.goToClaimsBlock();
         ControlPanelPage.goToNewsBlock();
-        NewsPage.checkThatNewsDoesNotExist(chosenCategory,description);
+        NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
         // удаление новости
         NewsPage.goToEditingModeForNews();
         NewsPage.deleteNews(chosenCategory);
@@ -187,7 +187,7 @@ public class EditNewsTests {
         NewsCreationAndEditingPage.changeNewsStatus();
         NewsCreationAndEditingPage.saveNews();
         // проверка, что новость имеет статус активна
-        NewsPage.checkNewsStatus(chosenCategory,currentDate,finalStatus);
+        NewsPage.checkNewsStatus(chosenCategory, currentDate, finalStatus);
         // проверка, что новость снова видна в блоке "Новости"
         ControlPanelPage.goToNewsBlock();
         //checkFirstNewsDataAfterEdit(chosenCategory,description,currentDate);

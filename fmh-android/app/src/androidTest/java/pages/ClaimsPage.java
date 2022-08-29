@@ -56,7 +56,7 @@ public class ClaimsPage {
         ClaimsScreen.executorNameOfFirstClaim.check(matches(isDisplayed()));
         ClaimsScreen.planDateOfFirstClaim.check(matches(isDisplayed()));
         ClaimsScreen.planTimeOfFirstClaim.check(matches(isDisplayed()));
-   }
+    }
 
     public static void goToFirstClaimFromClaimsBlock() {
         Allure.step("Переход к первой заявке из блока заявок");
@@ -78,7 +78,7 @@ public class ClaimsPage {
         Allure.step("Проверка открытого статуса у заявок");
         // провека первых трех заявок
         for (int claimPosition = 0; claimPosition < 3; claimPosition++) {
-            onView(MainHelper.withIndex(withId(R.id.claim_list_card),claimPosition)).perform(click());
+            onView(MainHelper.withIndex(withId(R.id.claim_list_card), claimPosition)).perform(click());
             Thread.sleep(2000);
             ClaimScreen.openStatus.check(matches(isDisplayed()));
             Espresso.pressBack();
@@ -87,7 +87,7 @@ public class ClaimsPage {
         // скрол до 3й заявки
         onView(allOf(withId(R.id.claim_list_recycler_view), isDisplayed())).perform(actionOnItemAtPosition(2, swipeUp()));
         // проверка 4й заявки
-        onView(MainHelper.withIndex(withId(R.id.claim_list_card),3)).perform(click());
+        onView(MainHelper.withIndex(withId(R.id.claim_list_card), 3)).perform(click());
         Thread.sleep(2000);
         ClaimScreen.openStatus.check(matches(isDisplayed()));
         Espresso.pressBack();
@@ -95,7 +95,7 @@ public class ClaimsPage {
         // повторный скрол до 3й заявки
         onView(allOf(withId(R.id.claim_list_recycler_view), isDisplayed())).perform(actionOnItemAtPosition(2, swipeUp()));
         // проверка 5й заявки
-        onView(MainHelper.withIndex(withId(R.id.claim_list_card),4)).perform(click());
+        onView(MainHelper.withIndex(withId(R.id.claim_list_card), 4)).perform(click());
         Thread.sleep(2000);
         ClaimScreen.openStatus.check(matches(isDisplayed()));
         Espresso.pressBack();

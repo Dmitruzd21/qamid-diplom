@@ -13,6 +13,7 @@ import pages.AuthorizationPage;
 import pages.ClaimPage;
 import pages.ClaimsPage;
 import pages.ControlPanelPage;
+
 import androidx.test.rule.ActivityTestRule;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -32,7 +33,7 @@ public class ClaimsTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test

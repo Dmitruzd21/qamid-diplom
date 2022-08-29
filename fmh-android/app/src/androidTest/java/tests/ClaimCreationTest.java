@@ -41,7 +41,7 @@ public class ClaimCreationTest {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test // тест длительно выполняется из-за огромного количества заявок
@@ -61,7 +61,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(title);
     }
@@ -83,7 +83,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title49,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title49, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(title49);
     }
@@ -105,7 +105,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title50,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title50, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(title50);
     }
@@ -128,7 +128,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title51,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title51, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(titleOfCreatedClaim);
     }
@@ -150,7 +150,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -174,7 +174,7 @@ public class ClaimCreationTest {
         String description = "-";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -198,7 +198,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -222,7 +222,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -246,7 +246,7 @@ public class ClaimCreationTest {
         String description = "New description";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(title);
         Thread.sleep(3000);
@@ -273,10 +273,10 @@ public class ClaimCreationTest {
         // будет введено время: 02:23 (заложено в методе, также в методе есть проверка, что введено именно это время)
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle,title,emptyExecutor,withExecutorChoice,chosenExecutor,executor,emptyDate,emptyTime,withDialPadOrTextInput,saveOrCancelTime,emptyDescription,description);
+        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         ClaimCreationPage.saveClaim();
         ClaimsPage.checkCreatedClaimInClaimsBlock(title);
-        ClaimsPage.checkTimeOfCreatedClaimInClaimsBlock(title,"02:23"); // эмулятор сохраняет 05:23
+        ClaimsPage.checkTimeOfCreatedClaimInClaimsBlock(title, "02:23"); // эмулятор сохраняет 05:23
     }
 
     @Test

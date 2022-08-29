@@ -40,7 +40,7 @@ public class NewsCreationTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test // БАГ!!!!!!!
@@ -62,7 +62,7 @@ public class NewsCreationTests {
         NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
     }
 
     @Test // тест проходит на эмуляторе при (даже с удалением)
@@ -81,10 +81,10 @@ public class NewsCreationTests {
         String description = "New description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         // удаление новости
         NewsPage.goToEditingModeForNews();
         NewsPage.deleteNews(chosenCategory);
@@ -107,10 +107,10 @@ public class NewsCreationTests {
         // будет введено время: 02:23 (заложено в методе, также в методе есть проверка, что введено именно это время)
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory,description);
+        NewsPage.checkNewsData(chosenCategory, description);
         // удаление новости
         NewsPage.goToEditingModeForNews();
         NewsPage.deleteNews(chosenCategory);
@@ -132,7 +132,7 @@ public class NewsCreationTests {
         String description = "New description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.сancelSavingNews();
         ControlPanelPage.goToNewsBlock();
         NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
@@ -154,7 +154,7 @@ public class NewsCreationTests {
         String description = "New description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -177,7 +177,7 @@ public class NewsCreationTests {
         String description = "no";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -200,7 +200,7 @@ public class NewsCreationTests {
         String description = "New description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
@@ -245,7 +245,7 @@ public class NewsCreationTests {
         String description = "New description";
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory,withCategoryChoice,chosenCategory,category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription,  description);
+        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         onView(withText(R.string.empty_fields))
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()

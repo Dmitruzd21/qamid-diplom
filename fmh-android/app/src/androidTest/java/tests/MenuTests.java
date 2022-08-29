@@ -37,12 +37,12 @@ public class MenuTests {
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2","password2");
+        AuthorizationPage.logIn("login2", "password2");
     }
 
     @Test
     @DisplayName("Раскрытие элементов меню при нахождении в главном блоке")
-    public void menuElementsShouldBeVisible(){
+    public void menuElementsShouldBeVisible() {
         MainScreen.menuButton.perform(click());
         ControlPanelPage.checkThatAllItemsOfMenuAreDisplayed();
         // условно лишний шаг перехода в раздел Жалоб, который позволяет затем выйти из приложения
@@ -51,7 +51,7 @@ public class MenuTests {
 
     @Test
     @DisplayName("Переход в главный блок при помощи меню")
-    public void shouldGoToMainBlockWithMenu(){
+    public void shouldGoToMainBlockWithMenu() {
         MainScreen.menuButton.perform(click());
         // чтобы проверить переход в главный блог, необходимо изначально перейти в любой другой
         MainScreen.claimsOfMenu.perform(click());
@@ -63,7 +63,7 @@ public class MenuTests {
 
     @Test
     @DisplayName("Переход в блок \"Заявки\" при помощи меню")
-    public void shouldGoToClaimsBlockWithMenu(){
+    public void shouldGoToClaimsBlockWithMenu() {
         ControlPanelPage.goToClaimsBlock();
         ClaimsScreen.containerForClaims.check(matches(isDisplayed()));
         ClaimsScreen.filtersButton.check(matches(isDisplayed()));
@@ -71,14 +71,14 @@ public class MenuTests {
 
     @Test
     @DisplayName("Переход в блок \"Новости\" при помощи меню")
-    public void shouldGoToNewsBlockWithMenu(){
+    public void shouldGoToNewsBlockWithMenu() {
         ControlPanelPage.goToNewsBlock();
         NewsScreen.sortNewsButton.check(matches(isDisplayed()));
     }
 
     @Test
     @DisplayName("Переход в блок \"О приложении\" при помощи меню")
-    public void shouldGoToAboutBlockWithMenu(){
+    public void shouldGoToAboutBlockWithMenu() {
         ControlPanelPage.goToAboutBlock();
         AboutAppScreen.versionValueElement.check(matches(isDisplayed()));
         AboutAppScreen.goBackButton.perform(click());

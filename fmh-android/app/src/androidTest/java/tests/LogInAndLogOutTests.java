@@ -26,7 +26,7 @@ import ru.iteco.fmhandroid.R;
 public class LogInAndLogOutTests {
 
     @Rule
-     public ActivityTestRule<ru.iteco.fmhandroid.ui.AppActivity> activityTestRule =
+    public ActivityTestRule<ru.iteco.fmhandroid.ui.AppActivity> activityTestRule =
             new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
 
     String validLogin = "login2";
@@ -39,7 +39,7 @@ public class LogInAndLogOutTests {
 
     @Test
     @DisplayName("Вход в личный кабинет с валидными данными (латинские символы)")
-    public void shouldLogInWithValidData() throws InterruptedException  {
+    public void shouldLogInWithValidData() throws InterruptedException {
         AuthorizationPage.logIn(validLogin, validPassword);
         ControlPanelPage.checkTradeMark();
         ControlPanelPage.logOut();
@@ -57,7 +57,7 @@ public class LogInAndLogOutTests {
     @Test
     @DisplayName("Выход из личного кабинета")
     public void shouldLogOut() throws InterruptedException {
-        AuthorizationPage.logIn(validLogin,validPassword);
+        AuthorizationPage.logIn(validLogin, validPassword);
         ControlPanelPage.logOut();
         AuthorizationPage.isAuthorizationScreen();
     }

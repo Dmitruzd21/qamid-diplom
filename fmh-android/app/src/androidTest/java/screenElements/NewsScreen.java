@@ -1,4 +1,5 @@
 package screenElements;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
@@ -19,7 +20,7 @@ public class NewsScreen {
 
     // Элементы раскрытой новости
     public static ViewInteraction firstCardNews = onView(MainHelper.withIndex(withId(R.id.news_item_material_card_view), 0));
-    public static ViewInteraction firstCardNews2= onView(
+    public static ViewInteraction firstCardNews2 = onView(
             allOf(withId(R.id.news_list_recycler_view),
                     MainHelper.childAtPosition(
                             withId(R.id.all_news_cards_block_constraint_layout),
@@ -27,7 +28,7 @@ public class NewsScreen {
     public static ViewInteraction secondCardNews = onView(MainHelper.withIndex(withId(R.id.news_item_material_card_view), 1));
     public static ViewInteraction thirdCardNews = onView(MainHelper.withIndex(withId(R.id.news_item_material_card_view), 2));
     public static ViewInteraction firstNewsItemTitle = onView(MainHelper.withIndex(withId(R.id.news_item_title_text_view), 0));
-    public static ViewInteraction firstNewsItemTitle2 =  onView(allOf(withId(R.id.news_item_title_text_view), withParent(withParent(MainHelper.withIndex(withId(R.id.news_item_material_card_view), 0)))));
+    public static ViewInteraction firstNewsItemTitle2 = onView(allOf(withId(R.id.news_item_title_text_view), withParent(withParent(MainHelper.withIndex(withId(R.id.news_item_material_card_view), 0)))));
     public static ViewInteraction secondNewsItemTitle = onView(MainHelper.withIndex(withId(R.id.news_item_title_text_view), 1));
     public static ViewInteraction thirdNewsItemTitle = onView(MainHelper.withIndex(withId(R.id.news_item_title_text_view), 2));
     public static ViewInteraction firstNewsItemDescription = onView(MainHelper.withIndex(withId(R.id.news_item_description_text_view), 0));

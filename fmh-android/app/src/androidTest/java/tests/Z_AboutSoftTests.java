@@ -16,7 +16,7 @@ import pages.BrowserPage;
 import pages.ControlPanelPage;
 
 @RunWith(AllureAndroidJUnit4.class)
-public class AboutSoftTests {
+public class Z_AboutSoftTests {
 
     @Rule
     public IntentsTestRule intentsTestRule =

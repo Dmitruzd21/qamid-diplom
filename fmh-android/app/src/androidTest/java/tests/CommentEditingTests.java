@@ -23,7 +23,7 @@ public class CommentEditingTests {
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+            new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void logIn() throws InterruptedException {
@@ -36,11 +36,11 @@ public class CommentEditingTests {
         AuthorizationPage.logIn("login2", "password2");
     }
 
-    @Test
+    @Test // проходит на эмуляторе, но падает, при запуске всех тестов
     @DisplayName("Редактирование комментария в заявке при валидных данных (кириллические символы)")
     public void shouldEditCommentOfClaim() throws InterruptedException {
-        String comment = "QA Midd1";
-        String commentForEditing = "QA Midd2";
+        String comment = "QA Midd108";
+        String commentForEditing = "QA Midd222s";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);

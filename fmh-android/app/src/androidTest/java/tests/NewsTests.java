@@ -24,7 +24,7 @@ public class NewsTests {
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+            new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void logIn() throws InterruptedException {
@@ -37,14 +37,14 @@ public class NewsTests {
         AuthorizationPage.logIn("login2", "password2");
     }
 
-    @Test
+    @Test // в одиночку проходит
     @DisplayName("Наличие новостей в блоке \"Новости\" (минимум 3)")
     public void shouldBeThreeNewsInNewsBlock() {
         ControlPanelPage.goToNewsBlock();
         NewsPage.checkThatThereAreThreeNewsItemsInTheNewsBlock();
     }
 
-    @Test
+    @Test // в одиночку проходит
     @DisplayName("Полнота информации новостей (в развернутом состоянии) в блоке \"Новости\"")
     public void shouldBeFullContentOfFirstExpandedNewsInNewsBlock() {
         ControlPanelPage.goToNewsBlock();
@@ -52,7 +52,7 @@ public class NewsTests {
         NewsPage.checkBasicContentOfFirstExpandedNewsInNewsBlock();
     }
 
-    @Test // низкая стабильность теста
+    @Test // проблемы со стабильностью
     @DisplayName("Удаление новости")
     public void shouldDeleteNews() throws InterruptedException {
         String emptyCategory = "no";
@@ -66,13 +66,13 @@ public class NewsTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        String currentDate = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         ControlPanelPage.goToNewsBlock();
         NewsPage.initiateTheCreationOfNews();
         NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
         NewsCreationAndEditingPage.saveNews();
         ControlPanelPage.goToNewsBlock();
         NewsPage.checkNewsData(chosenCategory, description);
+        NewsPage.goToEditingModeForNews();
         NewsPage.deleteNews(chosenCategory);
         ControlPanelPage.goToNewsBlock();
         Thread.sleep(3000);

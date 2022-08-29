@@ -29,7 +29,7 @@ public class CommentCreationTests {
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+            new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void logIn() throws InterruptedException {
@@ -42,10 +42,10 @@ public class CommentCreationTests {
         AuthorizationPage.logIn("login2", "password2");
     }
 
-    @Test
+    @Test // тест проходит, но падает при запуске всех тестов
     @DisplayName("Добавление нового комментария заявки с введением валидных данных")
     public void shouldCreateCommentWithValidData() throws InterruptedException {
-        String comment = "QA Midg1";
+        String comment = "QA Midgds1";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
@@ -75,7 +75,7 @@ public class CommentCreationTests {
     @Test  // нестабильный тест при запуске всех тестов на эмуляторе (отдельно проходит)
     @DisplayName("Отмена добавления нового комментария")
     public void shouldCancelCommentCreation() throws InterruptedException {
-        String comment = "QA Midf1";
+        String comment = "QA Midfr1";
         ControlPanelPage.goToClaimsBlock();
         ClaimsPage.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);

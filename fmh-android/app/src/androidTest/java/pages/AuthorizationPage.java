@@ -5,16 +5,10 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
-import androidx.test.rule.ActivityTestRule;
-
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.AuthorizationScreen;
 
 public class AuthorizationPage {
-
-    public static ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
 
     public static void isAuthorizationScreen() {
         Allure.step("Проверка, что открыто акно авторизации");

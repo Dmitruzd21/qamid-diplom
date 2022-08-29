@@ -4,13 +4,11 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 
 import android.widget.TimePicker;
 
@@ -18,20 +16,16 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.matcher.RootMatchers;
-import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matchers;
 
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.NewsCreationAndEditingScreen;
 
 public class NewsCreationAndEditingPage {
 
-    public static ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+
 
     public static void fillInTheNewsFields(String emptyCategory, String choiceOfCategory, String chosenCategory, String category, String title, String emptyDate, String emptyTime, String withDialPadOrTextInput, String saveOrCancelTime, String emptyDescription, String description) {
         Allure.step("Заполнение полей при создании/редактировании новости");
@@ -110,13 +104,6 @@ public class NewsCreationAndEditingPage {
         Allure.step("Отмена сохраннния новости");
         NewsCreationAndEditingScreen.cancelButtonOfNews.perform(click());
         NewsCreationAndEditingScreen.okButton.perform(click());
-    }
-
-    public static void checkErrorOfSaving() {
-        Allure.step("Проверка, что появляется предупреждение об ошибке сохранения новости");
-        onView(withText(R.string.error_saving))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Saving failed. Try again later.")));
     }
 
     public static void timeInput(String hours, String minutes) {

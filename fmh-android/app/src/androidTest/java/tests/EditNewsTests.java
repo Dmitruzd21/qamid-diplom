@@ -35,7 +35,7 @@ public class EditNewsTests {
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+            new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void logIn() throws InterruptedException {

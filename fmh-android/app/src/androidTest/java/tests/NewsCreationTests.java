@@ -30,7 +30,7 @@ public class NewsCreationTests {
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
-            new ActivityTestRule<>(ru.iteco.fmhandroid.ui.AppActivity.class);
+            new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void logIn() throws InterruptedException {
@@ -65,7 +65,7 @@ public class NewsCreationTests {
         NewsPage.checkNewsData(chosenCategory, description);
     }
 
-    @Test // тест проходит на эмуляторе при (даже с удалением)
+    @Test // тест проходит на эмуляторе (даже с удалением), нестабильный при запуске всех тестов
     @DisplayName("Выбор категории \"Зарплата\" из списка с автозаполнением заголовка при создании новости")
     public void shouldCreateNewsWithCategoryChoiceAndValidData() {
         String emptyCategory = "no";
@@ -116,7 +116,7 @@ public class NewsCreationTests {
         NewsPage.deleteNews(chosenCategory);
     }
 
-    @Test
+    @Test  // не самый стабильный тест
     @DisplayName("Отмена создания новости")
     public void shouldCancelNewsCreation() throws InterruptedException {
         String emptyCategory = "no";

@@ -23,7 +23,7 @@ import pages.ControlPanelPage;
 import ru.iteco.fmhandroid.R;
 
 @RunWith(AllureAndroidJUnit4.class)
-public class LogInAndLogOutTests {
+public class AuthorizationTests {
 
     @Rule
     public ActivityTestRule<ru.iteco.fmhandroid.ui.AppActivity> activityTestRule =

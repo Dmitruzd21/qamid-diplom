@@ -1,20 +1,15 @@
 package tests;
 
-import static androidx.test.espresso.Espresso.onView;
-
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ClaimCreationSteps;
-import pages.ClaimsSteps;
-import pages.ControlPanelSteps;
-import ru.iteco.fmhandroid.R;
+import steps.AuthorizationSteps;
+import steps.ClaimCreationSteps;
+import steps.ClaimsSteps;
+import steps.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 import androidx.test.espresso.NoMatchingViewException;

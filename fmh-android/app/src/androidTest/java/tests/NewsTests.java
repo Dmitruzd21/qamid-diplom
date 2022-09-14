@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ControlPanelSteps;
-import pages.NewsCreationAndEditingSteps;
-import pages.NewsSteps;
+import steps.AuthorizationSteps;
+import steps.ControlPanelSteps;
+import steps.NewsCreationAndEditingSteps;
+import steps.NewsSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)

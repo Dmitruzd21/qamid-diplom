@@ -1,4 +1,4 @@
-package pages;
+package steps;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -17,7 +17,6 @@ import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.AuthorizationScreen;
-import tests.AuthorizationTests;
 
 public class AuthorizationSteps {
 

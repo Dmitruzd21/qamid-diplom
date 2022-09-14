@@ -1,4 +1,4 @@
-package pages;
+package steps;
 
 import static org.hamcrest.core.AllOf.allOf;
 import static androidx.test.espresso.Espresso.onView;

@@ -1,4 +1,4 @@
-package pages;
+package steps;
 
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;

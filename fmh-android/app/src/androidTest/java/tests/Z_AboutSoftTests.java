@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AboutAppSteps;
-import pages.AuthorizationSteps;
-import pages.BrowserSteps;
-import pages.ControlPanelSteps;
+import steps.AboutAppSteps;
+import steps.AuthorizationSteps;
+import steps.BrowserSteps;
+import steps.ControlPanelSteps;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class Z_AboutSoftTests {

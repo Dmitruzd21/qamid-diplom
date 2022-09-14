@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ClaimsSteps;
-import pages.ControlPanelSteps;
+import steps.AuthorizationSteps;
+import steps.ClaimsSteps;
+import steps.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)

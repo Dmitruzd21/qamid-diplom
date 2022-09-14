@@ -1,4 +1,4 @@
-package pages;
+package steps;
 
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;

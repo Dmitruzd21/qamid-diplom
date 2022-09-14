@@ -1,4 +1,4 @@
-package pages;
+package steps;
 
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;

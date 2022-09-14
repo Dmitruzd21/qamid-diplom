@@ -3,9 +3,6 @@ package tests;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.is;
@@ -18,10 +15,8 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ControlPanelSteps;
-
-import ru.iteco.fmhandroid.R;
+import steps.AuthorizationSteps;
+import steps.ControlPanelSteps;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class AuthorizationTests {

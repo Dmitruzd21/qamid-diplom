@@ -1,18 +1,15 @@
 package tests;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ControlPanelSteps;
-import pages.NewsCreationAndEditingSteps;
-import pages.NewsSteps;
+import steps.AuthorizationSteps;
+import steps.ControlPanelSteps;
+import steps.NewsCreationAndEditingSteps;
+import steps.NewsSteps;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
@@ -22,7 +19,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)

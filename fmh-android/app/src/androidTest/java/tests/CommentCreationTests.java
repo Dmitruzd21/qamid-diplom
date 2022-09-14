@@ -1,8 +1,5 @@
 package tests;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -17,11 +14,11 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationSteps;
-import pages.ClaimSteps;
-import pages.ClaimsSteps;
-import pages.CommentSteps;
-import pages.ControlPanelSteps;
+import steps.AuthorizationSteps;
+import steps.ClaimSteps;
+import steps.ClaimsSteps;
+import steps.CommentSteps;
+import steps.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)

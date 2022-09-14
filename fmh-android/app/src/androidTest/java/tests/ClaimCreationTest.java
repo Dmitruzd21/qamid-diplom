@@ -10,11 +10,10 @@ import static org.hamcrest.Matchers.not;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ClaimCreationPage;
-import pages.ClaimPage;
-import pages.ClaimsPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ClaimCreationSteps;
+import pages.ClaimsSteps;
+import pages.ControlPanelSteps;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
@@ -37,11 +36,11 @@ public class ClaimCreationTest {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
 //    @Test // тест длительно выполняется из-за огромного количества заявок
@@ -148,13 +147,11 @@ public class ClaimCreationTest {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        ClaimCreationPage.saveClaim();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        ClaimCreationSteps.saveClaim();
+        ClaimCreationSteps.checkMessageThatFieldsShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -172,13 +169,11 @@ public class ClaimCreationTest {
         String saveOrCancelTime = "save";
         String emptyDescription = "yes";
         String description = "-";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        ClaimCreationPage.saveClaim();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        ClaimCreationSteps.saveClaim();
+        ClaimCreationSteps.checkMessageThatFieldsShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -196,13 +191,11 @@ public class ClaimCreationTest {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        ClaimCreationPage.saveClaim();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        ClaimCreationSteps.saveClaim();
+        ClaimCreationSteps.checkMessageThatFieldsShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -220,13 +213,12 @@ public class ClaimCreationTest {
         String saveOrCancelTime = "cancel";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        ClaimCreationPage.saveClaim();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.fillInTheClaimFields(emptyTitle, title, emptyExecutor, withExecutorChoice, chosenExecutor, executor, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        ClaimCreationSteps.saveClaim();
+        ClaimCreationSteps.checkMessageThatFieldsShouldBeFilled(activityTestRule);
+
     }
 
 //    @Test // тест длительно выполняется из-за огромного количества заявок
@@ -284,10 +276,10 @@ public class ClaimCreationTest {
     public void shouldInputMoreThan24HoursWhenClaimIsBeingCreated() {
         String invalidHours = "76";
         String validMinutes = "23";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.timeInput(invalidHours, validMinutes);
-        ClaimCreationPage.checkMessageOfTimeInputError();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.timeInput(invalidHours, validMinutes);
+        ClaimCreationSteps.checkMessageOfTimeInputError();
     }
 
     @Test
@@ -295,9 +287,9 @@ public class ClaimCreationTest {
     public void shouldInputMoreThan60MinutesWhenClaimIsBeingCreated() {
         String validHours = "22";
         String invalidMinutes = "68";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.initiateTheCreationOfClaim();
-        ClaimCreationPage.timeInput(validHours, invalidMinutes);
-        ClaimCreationPage.checkMessageOfTimeInputError();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.initiateTheCreationOfClaim();
+        ClaimCreationSteps.timeInput(validHours, invalidMinutes);
+        ClaimCreationSteps.checkMessageOfTimeInputError();
     }
 }

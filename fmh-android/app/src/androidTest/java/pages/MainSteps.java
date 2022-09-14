@@ -12,13 +12,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
+import screenElements.ClaimScreen;
 import screenElements.MainScreen;
 
-public class MainPage {
+public class MainSteps {
 
     public static void goToFirstClaimFromMainBlock() {
         Allure.step("Переход к первой заявке из главного блока");
         MainScreen.firstClaim.perform(click());
+        ClaimScreen.titleTextOfClaim.check(matches(isDisplayed()));
     }
 
     public static void checkContentOfFirstClaimInMainBlock() {
@@ -30,8 +32,9 @@ public class MainPage {
     }
 
     public static void expandFirstNewsInMainBlock() {
-        Allure.step("Раскрыть первую заявку в главном блоке");
+        Allure.step("Раскрыть первую новость в главном блоке");
         MainScreen.buttonToExpandFirstNews.perform(click());
+        // проверка заложена в следующем методе
     }
 
     public static void checkDescriptionOfFirstNews() {
@@ -60,6 +63,7 @@ public class MainPage {
     public static void expandOrHideNewsPart() {
         Allure.step("Свернуть/раскрыть раздел с новостями");
         MainScreen.buttonToExpandOrHideNewsPart.perform(click());
+        // проверка шага невозможна (результат разный в зависимости от предыдущего состояния)
     }
 
     public static void claimTitleIsDisplayedWithSwipe(Integer claimPosition) {

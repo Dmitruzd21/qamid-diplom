@@ -17,11 +17,11 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ClaimPage;
-import pages.ClaimsPage;
-import pages.CommentPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ClaimSteps;
+import pages.ClaimsSteps;
+import pages.CommentSteps;
+import pages.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)
@@ -35,57 +35,55 @@ public class CommentCreationTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test // тест проходит, но падает при запуске всех тестов
     @DisplayName("Добавление нового комментария заявки с введением валидных данных")
     public void shouldCreateCommentWithValidData() throws InterruptedException {
         String comment = "QA Midgdsr1";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.goToFirstClaimFromClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.initiateCommentCreation();
-        CommentPage.fillInTheCommentField(comment);
-        CommentPage.saveComment();
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.initiateCommentCreation();
+        CommentSteps.fillInTheCommentField(comment);
+        CommentSteps.saveComment();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.isCommentDisplayed(comment);
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.isCommentDisplayed(comment);
     }
 
     @Test // нестабильный тест при запуске всех тестов в эмуляторе (отдельно проходит)
     @DisplayName("Пустой ввод при добавлении нового комментария к заявке")
     public void shouldTryCreateCommentWithEmptyField() throws InterruptedException {
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.goToFirstClaimFromClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.initiateCommentCreation();
-        CommentPage.saveComment();
-        onView(withText("The field cannot be empty."))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("The field cannot be empty.")));
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.initiateCommentCreation();
+        CommentSteps.saveComment();
+        CommentSteps.checkMessageThatFieldShouldBeFilled(activityTestRule);
     }
 
     @Test  // нестабильный тест при запуске всех тестов на эмуляторе (отдельно проходит)
     @DisplayName("Отмена добавления нового комментария")
     public void shouldCancelCommentCreation() throws InterruptedException {
         String comment = "QA Midfrr1";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.goToFirstClaimFromClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.initiateCommentCreation();
-        CommentPage.fillInTheCommentField(comment);
-        CommentPage.cancelCommentCreation();
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.initiateCommentCreation();
+        CommentSteps.fillInTheCommentField(comment);
+        CommentSteps.cancelCommentCreation();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.commentDoesNotExist(comment);
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.commentDoesNotExist(comment);
     }
 
 }

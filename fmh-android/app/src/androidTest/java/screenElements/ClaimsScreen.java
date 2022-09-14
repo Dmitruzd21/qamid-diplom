@@ -2,6 +2,7 @@ package screenElements;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.espresso.ViewInteraction;
 
@@ -9,6 +10,9 @@ import additional.MainHelper;
 import ru.iteco.fmhandroid.R;
 
 public class ClaimsScreen {
+
+    // Название блока
+    public static ViewInteraction titleOfClaimsBlock = onView(withText("Claims"));
 
     // Создание заявки
     public static ViewInteraction addNewClaimButton = onView(withId(R.id.add_new_claim_material_button));
@@ -30,7 +34,9 @@ public class ClaimsScreen {
 
     // Фильтрация заявок
     public static ViewInteraction buttonForClaimsFiltering = onView(withId(R.id.filters_material_button));
+    public static ViewInteraction titleOfFilterDialog = onView(withId(R.id.claim_filter_dialog_title));
     public static ViewInteraction inProgress = onView(withId(R.id.item_filter_in_progress));
+    public static ViewInteraction open = onView(withId(R.id.item_filter_open));
     public static ViewInteraction okButton = onView(withId(R.id.claim_list_filter_ok_material_button));
 
 }

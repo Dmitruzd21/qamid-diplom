@@ -7,7 +7,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import io.qameta.allure.kotlin.Allure;
 import screenElements.AboutAppScreen;
 
-public class AboutAppPage {
+public class AboutAppSteps {
 
     public static void checkThatAboutBlockContentIsFull() {
         Allure.step("Проверка, что в блоке О Хосписе полный контент");
@@ -18,7 +18,7 @@ public class AboutAppPage {
     }
 
     public static void goToPrivacyPolicy() {
-        Allure.step("Перехок к политике конфиденциальности");
+        Allure.step("Переход к политике конфиденциальности");
         AboutAppScreen.privacyPolicyValue.perform(click());
     }
 

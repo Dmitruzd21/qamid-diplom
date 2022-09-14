@@ -12,10 +12,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
-import pages.NewsCreationAndEditingPage;
-import pages.NewsPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
+import pages.NewsCreationAndEditingSteps;
+import pages.NewsSteps;
 import ru.iteco.fmhandroid.R;
 
 import org.junit.Before;
@@ -41,11 +41,11 @@ public class EditNewsTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     public void createNewsWithActiveStatus() {
@@ -63,10 +63,10 @@ public class EditNewsTests {
         // параметры новости
         String chosenCategory = "Зарплата";
         String description = "Description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
     }
 
     public void createNewsWithNotActiveStatus() throws InterruptedException {
@@ -77,18 +77,18 @@ public class EditNewsTests {
         String description = "Description";
         String finalStatus = "Not active";
         createNewsWithActiveStatus();
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory, description);
-        NewsPage.initiateNewsEditing(chosenCategory);
+        NewsSteps.checkNewsData(chosenCategory, description);
+        NewsSteps.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для изменения статуса выбрана именно ранее созданная новость
-        NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
+        NewsCreationAndEditingSteps.checkNewsInEditMode(chosenCategory, currentDate, description);
         // изменение статуса
-        NewsCreationAndEditingPage.changeNewsStatus();
-        NewsCreationAndEditingPage.saveNews();
+        NewsCreationAndEditingSteps.changeNewsStatus();
+        NewsCreationAndEditingSteps.saveNews();
         Thread.sleep(5000);
-        ControlPanelPage.goToClaimsBlock();
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ControlPanelSteps.goToNewsBlock();
         NewsScreen.editNewsButton.perform(click());
         // проверка, что новость имеет статус "На активна"
         //NewsPage.checkNewsStatus(chosenCategory,currentDate, finalStatus);
@@ -116,23 +116,23 @@ public class EditNewsTests {
         String newDescription = "New description";
         // создаем новость
         createNewsWithActiveStatus();
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory, description);
+        NewsSteps.checkNewsData(chosenCategory, description);
         // переход к редактированию новости
-        NewsPage.initiateNewsEditing(chosenCategory);
+        NewsSteps.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для редактирования выбрана именно ранее созданная новость
         Thread.sleep(2000);
-        NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
+        NewsCreationAndEditingSteps.checkNewsInEditMode(chosenCategory, currentDate, description);
         // редактирование новости
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, newChosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, newDescription);
-        NewsCreationAndEditingPage.saveNews();
-        ControlPanelPage.goToNewsBlock();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, newChosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, newDescription);
+        NewsCreationAndEditingSteps.saveNews();
+        ControlPanelSteps.goToNewsBlock();
         // проверяем,что новость, действительно, отредактирована (данные обновились)
-        NewsPage.checkFirstNewsDataAfterEdit(newChosenCategory, newDescription, currentDate);
+        NewsSteps.checkFirstNewsDataAfterEdit(newChosenCategory, newDescription, currentDate);
         // удаление новости
-        NewsPage.goToEditingModeForNews();
-        NewsPage.deleteNews(newChosenCategory);
+        NewsSteps.goToEditingModeForNews();
+        NewsSteps.deleteNews(newChosenCategory);
     }
 
     @Test  // тест проходит (без удаления)
@@ -146,29 +146,29 @@ public class EditNewsTests {
         String finalStatus = "Not active";
         // создаем новость
         createNewsWithActiveStatus();
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
         // проверяем,что новость, действительно, создана
-        NewsPage.checkNewsData(chosenCategory, description);
+        NewsSteps.checkNewsData(chosenCategory, description);
         // переход к редактированию новости
-        NewsPage.initiateNewsEditing(chosenCategory);
+        NewsSteps.initiateNewsEditing(chosenCategory);
         // убеждаемся, что для изменения статуса выбрана именно ранее созданная новость
-        NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
+        NewsCreationAndEditingSteps.checkNewsInEditMode(chosenCategory, currentDate, description);
         // изменение статуса
-        NewsCreationAndEditingPage.changeNewsStatus();
-        NewsCreationAndEditingPage.saveNews();
+        NewsCreationAndEditingSteps.changeNewsStatus();
+        NewsCreationAndEditingSteps.saveNews();
         Thread.sleep(5000);
-        ControlPanelPage.goToClaimsBlock();
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ControlPanelSteps.goToNewsBlock();
         NewsScreen.editNewsButton.perform(click());
         // проверка, что новость имеет статус "На активна"
-        NewsPage.checkNewsStatus(chosenCategory, currentDate, finalStatus);
+        NewsSteps.checkNewsStatus(chosenCategory, currentDate, finalStatus);
         // проверка, что новость исчезла из панели новостей (допущение, что сохраненная ноовсть всегда показывается первой)
-        ControlPanelPage.goToClaimsBlock();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
+        ControlPanelSteps.goToClaimsBlock();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkThatNewsDoesNotExist(chosenCategory, description);
         // удаление новости
-        NewsPage.goToEditingModeForNews();
-        NewsPage.deleteNews(chosenCategory);
+        NewsSteps.goToEditingModeForNews();
+        NewsSteps.deleteNews(chosenCategory);
     }
 
     @Test // падает по техническим причинам!
@@ -182,16 +182,16 @@ public class EditNewsTests {
         onView(MainHelper.withIndex(withId(R.id.view_news_item_image_view), 0)).perform(click());
         onView(MainHelper.withIndex(withContentDescription("News editing button"), 0)).perform(click());
         // убеждаемся, что для изменения статуса выбрана именно ранее созданная новость
-        NewsCreationAndEditingPage.checkNewsInEditMode(chosenCategory, currentDate, description);
+        NewsCreationAndEditingSteps.checkNewsInEditMode(chosenCategory, currentDate, description);
         // изменение статуса
-        NewsCreationAndEditingPage.changeNewsStatus();
-        NewsCreationAndEditingPage.saveNews();
+        NewsCreationAndEditingSteps.changeNewsStatus();
+        NewsCreationAndEditingSteps.saveNews();
         // проверка, что новость имеет статус активна
-        NewsPage.checkNewsStatus(chosenCategory, currentDate, finalStatus);
+        NewsSteps.checkNewsStatus(chosenCategory, currentDate, finalStatus);
         // проверка, что новость снова видна в блоке "Новости"
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
         //checkFirstNewsDataAfterEdit(chosenCategory,description,currentDate);
-        NewsPage.checkNewsData(chosenCategory, description);
+        NewsSteps.checkNewsData(chosenCategory, description);
     }
 
 }

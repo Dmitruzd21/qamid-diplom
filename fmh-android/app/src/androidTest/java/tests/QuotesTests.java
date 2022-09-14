@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
-import pages.QuotesPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
+import pages.QuotesSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)
@@ -26,11 +26,11 @@ public class QuotesTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test
@@ -44,23 +44,23 @@ public class QuotesTests {
         String quoteTextTitle6 = "\"Хоспис продлевает жизнь, дает надежду, утешение и поддержку.\"";
         String quoteTextTitle7 = "\"Двигатель хосписа - милосердие плюс профессионализм\"\\nА.В. Гнездилов, д.м.н., один из пионеров хосписного движения.";
         String quoteTextTitle8 = "Важен каждый!";
-        ControlPanelPage.goToQuotesBlock();
-        QuotesPage.findQuoteWith(quoteTextTitle1);
-        QuotesPage.findQuoteWith(quoteTextTitle2);
-        QuotesPage.findQuoteWith(quoteTextTitle3);
-        QuotesPage.findQuoteWith(quoteTextTitle4);
-        QuotesPage.findQuoteWith(quoteTextTitle5);
-        QuotesPage.findQuoteWith(quoteTextTitle6);
-        QuotesPage.findQuoteWith(quoteTextTitle7);
-        QuotesPage.findQuoteWith(quoteTextTitle8);
+        ControlPanelSteps.goToQuotesBlock();
+        QuotesSteps.findQuoteWith(quoteTextTitle1);
+        QuotesSteps.findQuoteWith(quoteTextTitle2);
+        QuotesSteps.findQuoteWith(quoteTextTitle3);
+        QuotesSteps.findQuoteWith(quoteTextTitle4);
+        QuotesSteps.findQuoteWith(quoteTextTitle5);
+        QuotesSteps.findQuoteWith(quoteTextTitle6);
+        QuotesSteps.findQuoteWith(quoteTextTitle7);
+        QuotesSteps.findQuoteWith(quoteTextTitle8);
     }
 
     @Test
     @DisplayName("shouldBeFullContentInEachQuote")
     public void shouldBeFullContentInEachQuote() {
-        ControlPanelPage.goToQuotesBlock();
-        QuotesPage.openOrCloseFirstQuote();
-        QuotesPage.checkThatFirstQuoteContentIsFull();
+        ControlPanelSteps.goToQuotesBlock();
+        QuotesSteps.openOrCloseFirstQuote();
+        QuotesSteps.checkThatFirstQuoteContentIsFull();
     }
 
 }

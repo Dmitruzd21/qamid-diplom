@@ -1,5 +1,6 @@
 package tests;
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -17,8 +18,8 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
 
 import ru.iteco.fmhandroid.R;
 
@@ -35,30 +36,33 @@ public class AuthorizationTests {
     @Before
     public void sleep() throws InterruptedException {
         Thread.sleep(7000);
+        try {
+            AuthorizationSteps.isAuthorizationScreen();
+        } catch (NoMatchingViewException e) {
+            ControlPanelSteps.logOut();
+        }
     }
 
     @Test
     @DisplayName("Вход в личный кабинет с валидными данными (латинские символы)")
     public void shouldLogInWithValidData() throws InterruptedException {
-        AuthorizationPage.logIn(validLogin, validPassword);
-        ControlPanelPage.checkTradeMark();
-        ControlPanelPage.logOut();
+        AuthorizationSteps.logIn(validLogin, validPassword);
+        ControlPanelSteps.checkTradeMark();
+        ControlPanelSteps.logOut();
     }
 
     @Test
     @DisplayName("Вход в личный кабинет с пустыми полями")
     public void shouldTryLogInWithEmptyField() throws InterruptedException {
-        AuthorizationPage.clickSignInButton();
-        onView(withText(R.string.empty_login_or_password))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Login and password cannot be empty")));
+        AuthorizationSteps.clickSignInButton();
+        AuthorizationSteps.checkMessageThatFieldShouldNotBeEmpty(activityTestRule);
     }
 
     @Test
     @DisplayName("Выход из личного кабинета")
     public void shouldLogOut() throws InterruptedException {
-        AuthorizationPage.logIn(validLogin, validPassword);
-        ControlPanelPage.logOut();
-        AuthorizationPage.isAuthorizationScreen();
+        AuthorizationSteps.logIn(validLogin, validPassword);
+        ControlPanelSteps.logOut();
+        AuthorizationSteps.isAuthorizationScreen();
     }
 }

@@ -16,24 +16,28 @@ import static org.hamcrest.Matchers.not;
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
+import screenElements.NewsCreationAndEditingScreen;
 import screenElements.NewsScreen;
 
-public class NewsPage {
+public class NewsSteps {
 
     public static void initiateTheCreationOfNews() {
         Allure.step("Начинаем создавать новость (переход к созданию новости)");
         NewsScreen.editNewsButton.perform(click());
+        NewsScreen.addNewsButton.check(matches(isDisplayed()));
         NewsScreen.addNewsButton.perform(click());
+        NewsCreationAndEditingScreen.titleOfNewsCreatingWindow.check(matches(isDisplayed()));
     }
 
     public static void initiateNewsEditing(String title) throws InterruptedException {
         Allure.step("Переход к редактированию ранее созданной новости");
         NewsScreen.editNewsButton.perform(click());
         Thread.sleep(3000);
+        NewsScreen.addNewsButton.check(matches(isDisplayed()));
         onView(withId(R.id.sort_news_material_button)).perform(click());
         MainHelper.isDisplayedWithSwipe(onView(allOf(withId(R.id.news_item_material_card_view), hasDescendant(withText(title)))), 1, true);
         onView(allOf(withId(R.id.edit_news_item_image_view), hasSibling(withText(title)))).perform(click());
-
+        NewsCreationAndEditingScreen.titleOfEditingNewsWindow.check(matches(isDisplayed()));
     }
 
     public static void checkNewsData(String title, String description) {
@@ -74,9 +78,11 @@ public class NewsPage {
         MainHelper.isDisplayedWithSwipe(onView(allOf(withId(R.id.news_item_material_card_view), hasDescendant(withText(title)))), 1, true);
         // непосредственное удаление новости
         onView(allOf(withId(R.id.delete_news_item_image_view), hasSibling(withText(title)))).perform(click());
-        //NewsScreen.deleteFirstNewsButton.perform(click());
+        NewsScreen.okButton.check(matches(isDisplayed()));
         // подтверждаем удаление новости
         NewsScreen.okButton.perform(click());
+        // проверка возвращения к новостям (видна кнопка добавления новости)
+        NewsScreen.addNewsButton.check(matches(isDisplayed()));
     }
 
     public static void checkNewsStatus(String chosenCategory, String currentDate, String finalStatus) {
@@ -92,6 +98,7 @@ public class NewsPage {
     public static void expandFirstNewsInNewsBlock() {
         Allure.step("Раскрыть первую заявку в блоке новостей");
         NewsScreen.openFirstNewsInNewsBlock.perform(click());
+        // проверка шага проводится в тесте
     }
 
     public static void checkBasicContentOfFirstExpandedNewsInNewsBlock() {
@@ -113,6 +120,7 @@ public class NewsPage {
 
     public static void goToEditingModeForNews() {
         NewsScreen.editNewsButton.perform(click());
+        NewsCreationAndEditingScreen.titleOfEditingNewsWindow.check(matches(isDisplayed()));
     }
 
 }

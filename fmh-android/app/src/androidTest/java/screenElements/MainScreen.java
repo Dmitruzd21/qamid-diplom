@@ -27,7 +27,8 @@ public class MainScreen {
     // Переход к блоку цитат о хосписе
     public static ViewInteraction goToQuotesBlockButton = onView(withId(R.id.our_mission_image_button));
 
-    // Новости
+    //
+    public static ViewInteraction titleOfNewsPart = onView(withText("News"));
     public static ViewInteraction buttonToExpandOrHideNewsPart = onView(MainHelper.withIndex(withId(R.id.expand_material_button), 0));
     public static ViewInteraction containerListForNews = onView(withId(R.id.container_list_news_include_on_fragment_main));
     public static ViewInteraction buttonToExpandFirstNews = onView(MainHelper.withIndex(withId(R.id.view_news_item_image_view), 0));

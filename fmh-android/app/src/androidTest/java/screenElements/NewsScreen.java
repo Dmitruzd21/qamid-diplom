@@ -14,6 +14,10 @@ import ru.iteco.fmhandroid.R;
 
 
 public class NewsScreen {
+
+    // Заголовок блока "Новости"
+    public static ViewInteraction titleOfNewsBlock = onView(withText("News"));
+
     // Раскрыть новость в блоке новостей
     public static ViewInteraction openFirstNewsInNewsBlock = onView(MainHelper.withIndex(withId(R.id.view_news_item_image_view), 0));
     public static ViewInteraction openSecondNewsInNewsBlock = onView(MainHelper.withIndex(withId(R.id.view_news_item_image_view), 1));

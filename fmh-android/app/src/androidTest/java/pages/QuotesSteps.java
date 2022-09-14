@@ -10,11 +10,12 @@ import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
 import screenElements.QuotesScreen;
 
-public class QuotesPage {
+public class QuotesSteps {
 
     public static void openOrCloseFirstQuote() {
         Allure.step("Раскрыть/свернуть первую цитату");
         QuotesScreen.openOrCloseFirstQuoteButton.perform(click());
+        // проверка шага не предусмотрена (результат зависит от исходногго состояния)
     }
 
     public static void checkThatFirstQuoteContentIsFull() {
@@ -24,7 +25,7 @@ public class QuotesPage {
     }
 
     public static void findQuoteWith(String title) {
-        Allure.step("Поск цитаты с заголовком");
+        Allure.step("Поиск цитаты с заголовком");
         MainHelper.isDisplayedWithSwipe(onView(withText(title)), 3, true);
     }
 

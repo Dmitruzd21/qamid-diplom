@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ClaimPage;
-import pages.ClaimsPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ClaimSteps;
+import pages.ClaimsSteps;
+import pages.ControlPanelSteps;
 
 import androidx.test.rule.ActivityTestRule;
 
@@ -29,35 +29,35 @@ public class ClaimsTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test
     @DisplayName("Наличие всех заявок в блоке \"Заявки\" (минимум 3)")
     public void shouldBeThreeClaimsInClaimsBlock() {
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.checkThatThereAreThreeClaimsItemsInTheClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.checkThatThereAreThreeClaimsItemsInTheClaimsBlock();
     }
 
     @Test // тест нестабильный при запуске всех тестов в эмуляторе (отдельно проходит)
     @DisplayName("Полнота информации заявок (в свернутом состоянии) в блоке \"Заявки\"")
     public void shouldBeFullContentOfNotExpandedClaimInClaimsBlock() throws InterruptedException {
-        ControlPanelPage.goToClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
         Thread.sleep(3000);
-        ClaimsPage.checkContentOfFirstClaimInClaimsBlock();
+        ClaimsSteps.checkContentOfFirstClaimInClaimsBlock();
     }
 
     @Test
     @DisplayName("Полнота информации раскрытой заявки в блоке \"Заявки\"")
     public void shouldBeFullContentOfExpandedClaimInClaimsBlock() throws InterruptedException {
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.goToFirstClaimFromClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
-        ClaimPage.checkFullContentOfExpandedClaim();
+        ClaimSteps.checkFullContentOfExpandedClaim();
     }
 
 }

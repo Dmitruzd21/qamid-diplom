@@ -4,11 +4,13 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 import android.widget.TimePicker;
 
@@ -16,14 +18,18 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.matcher.RootMatchers;
+import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matchers;
 
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.NewsCreationAndEditingScreen;
+import screenElements.NewsScreen;
 
-public class NewsCreationAndEditingPage {
+public class NewsCreationAndEditingSteps {
 
 
 
@@ -33,26 +39,19 @@ public class NewsCreationAndEditingPage {
         Integer categoryPosition = null;
         if (chosenCategory == "Объявление") {
             categoryPosition = 0;
-        }
-        if (chosenCategory == "День рождения") {
+        } else if (chosenCategory == "День рождения") {
             categoryPosition = 1;
-        }
-        if (chosenCategory == "Зарплата") {
+        } else if (chosenCategory == "Зарплата") {
             categoryPosition = 2;
-        }
-        if (chosenCategory == "Профсоюз") {
+        } else if (chosenCategory == "Профсоюз") {
             categoryPosition = 3;
-        }
-        if (chosenCategory == "Праздник") {
+        } else if (chosenCategory == "Праздник") {
             categoryPosition = 4;
-        }
-        if (chosenCategory == "Массаж") {
+        } else if (chosenCategory == "Массаж") {
             categoryPosition = 5;
-        }
-        if (chosenCategory == "Благодарность") {
+        } else if (chosenCategory == "Благодарность") {
             categoryPosition = 6;
-        }
-        if (chosenCategory == "Нужна помощь") {
+        } else if (chosenCategory == "Нужна помощь") {
             categoryPosition = 7;
         }
         // заполнение поля "Категория"
@@ -63,9 +62,11 @@ public class NewsCreationAndEditingPage {
                 Espresso.onData(Matchers.anything()).inRoot(RootMatchers.isPlatformPopup()).atPosition(categoryPosition).perform(ViewActions.click());
             } else {
                 NewsCreationAndEditingScreen.categoryTextInputOfNews.perform(replaceText(category));
+                NewsCreationAndEditingScreen.categoryTextInputOfNews.check(matches(isDisplayed()));
             }
         } else {
             NewsCreationAndEditingScreen.titleTextInputOfNews.perform(replaceText(title));
+            NewsCreationAndEditingScreen.titleTextInputOfNews.check(matches(withText(title)));
         }
         // заполнение поля "Дата"
         if (emptyDate == "no") {
@@ -92,18 +93,21 @@ public class NewsCreationAndEditingPage {
         // заполнение поля "Описание"
         if (emptyDescription == "no") {
             NewsCreationAndEditingScreen.descriptionTextInputOfNews.perform(replaceText(description));
+            NewsCreationAndEditingScreen.descriptionTextInputOfNews.check(matches(withText(description)));
         }
     }
 
     public static void saveNews() {
         Allure.step("Сохранить новость");
         NewsCreationAndEditingScreen.saveButtonOfNews.perform(click());
+        NewsScreen.addNewsButton.check(matches(isDisplayed()));
     }
 
     public static void сancelSavingNews() {
-        Allure.step("Отмена сохраннния новости");
+        Allure.step("Отмена сохранения новости");
         NewsCreationAndEditingScreen.cancelButtonOfNews.perform(click());
         NewsCreationAndEditingScreen.okButton.perform(click());
+        NewsScreen.addNewsButton.check(matches(isDisplayed()));
     }
 
     public static void timeInput(String hours, String minutes) {
@@ -131,6 +135,12 @@ public class NewsCreationAndEditingPage {
     public static void changeNewsStatus() {
         Allure.step("Изменить статус новости");
         NewsCreationAndEditingScreen.statusOfNewsSwitcher.perform(click());
+        // проверка не предусмотрена (результат зависит от предыдущего состояния)
     }
 
+    public static void checkMessageThatFieldShouldBeFilled(ActivityTestRule<AppActivity> activityTestRule) {
+        onView(withText(R.string.empty_fields))
+                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
+                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+    }
 }

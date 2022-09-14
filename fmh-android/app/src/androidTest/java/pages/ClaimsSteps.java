@@ -6,26 +6,31 @@ import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.hasSibling;
+import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import androidx.test.espresso.Espresso;
 
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
+import screenElements.ClaimCreationAndEditingScreen;
 import screenElements.ClaimScreen;
 import screenElements.ClaimsScreen;
 
-public class ClaimsPage {
+public class ClaimsSteps {
 
     public static void initiateTheCreationOfClaim() {
         Allure.step("Начинаем создавать заявку (переход в раздел создания заявки)");
         ClaimsScreen.addNewClaimButton.perform(click());
+        ClaimCreationAndEditingScreen.titleOfClaimsCreatingPage.check(matches(isDisplayed()));
     }
 
     public static void checkCreatedClaimInClaimsBlock(String title) {
@@ -41,6 +46,7 @@ public class ClaimsPage {
     public static void goToCreatedClaim(String title) {
         Allure.step("Переход к созданной заявке");
         onView(allOf(withId(R.id.claim_list_card), hasDescendant(withText(title)))).perform(click());
+        ClaimScreen.titleTextOfClaim.check(matches(isDisplayed()));
     }
 
     public static void checkThatThereAreThreeClaimsItemsInTheClaimsBlock() {
@@ -61,17 +67,22 @@ public class ClaimsPage {
     public static void goToFirstClaimFromClaimsBlock() {
         Allure.step("Переход к первой заявке из блока заявок");
         ClaimsScreen.firstClaimCard.perform(click());
+        ClaimScreen.titleTextOfClaim.check(matches(isDisplayed()));
     }
 
     public static void initiateClaimFiltering() {
         Allure.step("Приступить к фильтрации заявок");
         ClaimsScreen.buttonForClaimsFiltering.perform(click());
+        ClaimsScreen.titleOfFilterDialog.check(matches(isDisplayed()));
     }
 
     public static void сhooseOnlyOpenStatusIfOpenAndInProgressStatusesAreChosenInitially() {
         Allure.step("Выбрать только открытый статус при фильтрации");
         ClaimsScreen.inProgress.perform(click());
+        ClaimsScreen.open.check(matches(isChecked()));
+        ClaimsScreen.inProgress.check(matches(isNotChecked()));
         ClaimsScreen.okButton.perform(click());
+        ClaimsScreen.titleOfClaimsBlock.check(matches(isDisplayed()));
     }
 
     public static void checkThatFirstFiveClaimsHaveOpenStatus() throws InterruptedException {

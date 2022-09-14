@@ -3,7 +3,7 @@ package tests;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 
-import pages.CommentPage;
+import pages.CommentSteps;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -12,10 +12,10 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ClaimPage;
-import pages.ClaimsPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ClaimSteps;
+import pages.ClaimsSteps;
+import pages.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)
@@ -29,11 +29,11 @@ public class CommentEditingTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test // проходит на эмуляторе, но падает, при запуске всех тестов
@@ -41,25 +41,25 @@ public class CommentEditingTests {
     public void shouldEditCommentOfClaim() throws InterruptedException {
         String comment = "QA Midd1088";
         String commentForEditing = "QA Midd222s8";
-        ControlPanelPage.goToClaimsBlock();
-        ClaimsPage.goToFirstClaimFromClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
+        ClaimsSteps.goToFirstClaimFromClaimsBlock();
         Thread.sleep(3000);
         // приступаем к созданию комментария
-        ClaimPage.scrollToLastComment();
-        ClaimPage.initiateCommentCreation();
-        CommentPage.fillInTheCommentField(comment);
-        CommentPage.saveComment();
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.initiateCommentCreation();
+        CommentSteps.fillInTheCommentField(comment);
+        CommentSteps.saveComment();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.isCommentDisplayed(comment);
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.isCommentDisplayed(comment);
         // приступаем к редактированию комментария
-        ClaimPage.scrollToLastComment();
-        ClaimPage.initiateCommentEditing(comment);
-        CommentPage.fillInTheCommentField(commentForEditing);
-        CommentPage.saveComment();
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.initiateCommentEditing(comment);
+        CommentSteps.fillInTheCommentField(commentForEditing);
+        CommentSteps.saveComment();
         Thread.sleep(3000);
-        ClaimPage.scrollToLastComment();
-        ClaimPage.isCommentDisplayed(commentForEditing);
+        ClaimSteps.scrollToLastComment();
+        ClaimSteps.isCommentDisplayed(commentForEditing);
     }
 
 }

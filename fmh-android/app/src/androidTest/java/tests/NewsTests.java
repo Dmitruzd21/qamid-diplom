@@ -8,15 +8,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
-import pages.NewsCreationAndEditingPage;
-import pages.NewsPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
+import pages.NewsCreationAndEditingSteps;
+import pages.NewsSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)
@@ -30,26 +27,26 @@ public class NewsTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test // в одиночку проходит
     @DisplayName("Наличие новостей в блоке \"Новости\" (минимум 3)")
     public void shouldBeThreeNewsInNewsBlock() {
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkThatThereAreThreeNewsItemsInTheNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkThatThereAreThreeNewsItemsInTheNewsBlock();
     }
 
     @Test // в одиночку проходит
     @DisplayName("Полнота информации новостей (в развернутом состоянии) в блоке \"Новости\"")
     public void shouldBeFullContentOfFirstExpandedNewsInNewsBlock() {
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.expandFirstNewsInNewsBlock();
-        NewsPage.checkBasicContentOfFirstExpandedNewsInNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.expandFirstNewsInNewsBlock();
+        NewsSteps.checkBasicContentOfFirstExpandedNewsInNewsBlock();
     }
 
     @Test // проблемы со стабильностью
@@ -66,17 +63,17 @@ public class NewsTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory, description);
-        NewsPage.goToEditingModeForNews();
-        NewsPage.deleteNews(chosenCategory);
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkNewsData(chosenCategory, description);
+        NewsSteps.goToEditingModeForNews();
+        NewsSteps.deleteNews(chosenCategory);
+        ControlPanelSteps.goToNewsBlock();
         Thread.sleep(3000);
-        NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
+        NewsSteps.checkThatNewsDoesNotExist(chosenCategory, description);
     }
 }
 

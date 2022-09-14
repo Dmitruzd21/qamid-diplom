@@ -15,8 +15,9 @@ import static additional.MainHelper.isDisplayedWithSwipe;
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import screenElements.ClaimScreen;
+import screenElements.CommentScreen;
 
-public class ClaimPage {
+public class ClaimSteps {
 
     public static void checkBasicElementsOfClaim() {
         Allure.step("Проверка, основных элементов заявки: тема, исполнитель, плановая дата");
@@ -45,11 +46,13 @@ public class ClaimPage {
     public static void scrollToLastComment() {
         Allure.step("Скрол к последнему комментарию (которого НЕТ)");
         isDisplayedWithSwipe(onView(withText("hjdwdwqfrgDEFEyveEUBU")), 4, true);
+        ClaimScreen.buttonToAddComment.check(matches(isDisplayed()));
     }
 
     public static void initiateCommentCreation() {
         Allure.step("Нажать на кнопу добавления комментария");
         ClaimScreen.buttonToAddComment.perform(click());
+        CommentScreen.saveButton.check(matches(isDisplayed()));
     }
 
     public static void isCommentDisplayed(String comment) {
@@ -65,6 +68,7 @@ public class ClaimPage {
     public static void initiateCommentEditing(String comment) {
         Allure.step("Переход к редактированию комментария");
         onView(allOf(withId(R.id.edit_comment_image_button), hasSibling(withText(comment)))).perform(click());
+        CommentScreen.saveButton.check(matches(isDisplayed()));
     }
 
     public static void checkThatTheExecutorIsNotAssigned() {

@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.AboutAppScreen;
 import screenElements.ClaimsScreen;
@@ -33,18 +33,18 @@ public class MenuTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test
     @DisplayName("Раскрытие элементов меню при нахождении в главном блоке")
     public void menuElementsShouldBeVisible() {
         MainScreen.menuButton.perform(click());
-        ControlPanelPage.checkThatAllItemsOfMenuAreDisplayed();
+        ControlPanelSteps.checkThatAllItemsOfMenuAreDisplayed();
         // условно лишний шаг перехода в раздел Жалоб, который позволяет затем выйти из приложения
         MainScreen.claimsOfMenu.perform(click());
     }
@@ -64,7 +64,7 @@ public class MenuTests {
     @Test
     @DisplayName("Переход в блок \"Заявки\" при помощи меню")
     public void shouldGoToClaimsBlockWithMenu() {
-        ControlPanelPage.goToClaimsBlock();
+        ControlPanelSteps.goToClaimsBlock();
         ClaimsScreen.containerForClaims.check(matches(isDisplayed()));
         ClaimsScreen.filtersButton.check(matches(isDisplayed()));
     }
@@ -72,14 +72,14 @@ public class MenuTests {
     @Test
     @DisplayName("Переход в блок \"Новости\" при помощи меню")
     public void shouldGoToNewsBlockWithMenu() {
-        ControlPanelPage.goToNewsBlock();
+        ControlPanelSteps.goToNewsBlock();
         NewsScreen.sortNewsButton.check(matches(isDisplayed()));
     }
 
     @Test
     @DisplayName("Переход в блок \"О приложении\" при помощи меню")
     public void shouldGoToAboutBlockWithMenu() {
-        ControlPanelPage.goToAboutBlock();
+        ControlPanelSteps.goToAboutBlock();
         AboutAppScreen.versionValueElement.check(matches(isDisplayed()));
         AboutAppScreen.goBackButton.perform(click());
     }

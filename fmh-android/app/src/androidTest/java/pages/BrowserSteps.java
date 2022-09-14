@@ -9,7 +9,7 @@ import android.content.Intent;
 
 import io.qameta.allure.kotlin.Allure;
 
-public class BrowserPage {
+public class BrowserSteps {
 
     public static void checkTheSuccessfulTransitionToPrivacyPolicy() {
         Allure.step("Проверка перехода на сайт с политикой конфиденциальности");

@@ -4,11 +4,13 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 import android.widget.TimePicker;
 
@@ -16,14 +18,18 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.matcher.RootMatchers;
+import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matchers;
 
 import additional.MainHelper;
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.ui.AppActivity;
 import screenElements.ClaimCreationAndEditingScreen;
+import screenElements.ClaimsScreen;
 
-public class ClaimCreationPage {
+public class ClaimCreationSteps {
 
     public static void fillInTheClaimFields(String emptyTitle, String title, String emptyExecutor, String choiceOfExecutor, String chosenExecutor, String executor, String emptyDate, String emptyTime, String withDialPadOrTextInput, String saveOrCancelTime, String emptyDescription, String description) {
         Allure.step("Заполнение полей при создании заявки");
@@ -31,25 +37,21 @@ public class ClaimCreationPage {
         Integer executorPosition = null;
         if (chosenExecutor == "Смирнов Петр Петрович") {
             executorPosition = 0;
-        }
-        if (chosenExecutor == "Иванов Данил Данилович") {
+        } else if (chosenExecutor == "Иванов Данил Данилович") {
             executorPosition = 1;
-        }
-        if (chosenExecutor == "Петров Егор Егорович") {
+        } else if (chosenExecutor == "Петров Егор Егорович") {
             executorPosition = 2;
-        }
-        if (chosenExecutor == "Сидоров Дмитрий Дмитриевич") {
+        } else if (chosenExecutor == "Сидоров Дмитрий Дмитриевич") {
             executorPosition = 3;
-        }
-        if (chosenExecutor == "Тестов Тест Тестович") {
+        } else if (chosenExecutor == "Тестов Тест Тестович") {
             executorPosition = 4;
-        }
-        if (chosenExecutor == "Netology Diplom QAMID") {
+        } else if (chosenExecutor == "Netology Diplom QAMID") {
             executorPosition = 5;
         }
         // заполнение поля "Тема"
         if (emptyTitle == "no") {
             ClaimCreationAndEditingScreen.titleTextInputOfClaim.perform(replaceText(title));
+            ClaimCreationAndEditingScreen.titleTextInputOfClaim.check(matches(withText(title)));
         }
         // заполнение поля "Исполнитель"
         if (emptyExecutor == "no") {
@@ -59,6 +61,7 @@ public class ClaimCreationPage {
                 Espresso.onData(Matchers.anything()).inRoot(RootMatchers.isPlatformPopup()).atPosition(executorPosition).perform(ViewActions.click());
             } else {
                 ClaimCreationAndEditingScreen.executorTextInput.perform(replaceText(executor));
+                ClaimCreationAndEditingScreen.executorTextInput.check(matches(withText(executor)));
             }
         }
         // заполнение поля "Дата"
@@ -86,6 +89,7 @@ public class ClaimCreationPage {
         // заполнение поля "Описание"
         if (emptyDescription == "no") {
             ClaimCreationAndEditingScreen.descriptionTextInputOfClaim.perform(replaceText(description));
+            ClaimCreationAndEditingScreen.descriptionTextInputOfClaim.check(matches(withText(description)));
         }
     }
 
@@ -106,11 +110,19 @@ public class ClaimCreationPage {
     public static void saveClaim() {
         Allure.step("Сохранить заявку");
         ClaimCreationAndEditingScreen.saveButtonOfClaim.perform(click());
+        ClaimsScreen.titleOfClaimsBlock.check(matches(isDisplayed()));
     }
 
     public static void cancelSavingOfClaim() {
         Allure.step("Отмена сохранения заявки");
         ClaimCreationAndEditingScreen.cancelButtonOfClaim.perform(click());
         ClaimCreationAndEditingScreen.okButton.perform(click());
+        ClaimsScreen.titleOfClaimsBlock.check(matches(isDisplayed()));
+    }
+
+    public static void checkMessageThatFieldsShouldBeFilled(ActivityTestRule<AppActivity> activityTestRule) {
+        onView(withText(R.string.empty_fields))
+                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
+                        .getDecorView())))).check(matches(withText("Fill empty fields")));
     }
 }

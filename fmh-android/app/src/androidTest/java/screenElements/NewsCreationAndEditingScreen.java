@@ -12,10 +12,11 @@ import ru.iteco.fmhandroid.R;
 public class NewsCreationAndEditingScreen {
 
     // Элементы при создании/редактировании новости
-    String titleOfNewsBlock = "custom_app_bar_title_text_view";
-    String subtitleOfNewsBlock = "custom_app_bar_sub_title_text_view";
     String iconForCategoryChoice = "text_input_end_icon";
 
+
+    public static ViewInteraction titleOfEditingNewsWindow = onView(withText("Editing"));
+    public static ViewInteraction titleOfNewsCreatingWindow = onView(withId(R.id.custom_app_bar_sub_title_text_view));
     public static ViewInteraction categoryTextInputOfNews = onView(withId(R.id.news_item_category_text_auto_complete_text_view));
     public static ViewInteraction buttonForShowingDropdownMenu = onView(withContentDescription("Show dropdown menu"));
     public static ViewInteraction titleTextInputOfNews = onView(withId(R.id.news_item_title_text_input_edit_text));

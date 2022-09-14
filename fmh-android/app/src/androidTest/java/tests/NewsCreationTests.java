@@ -9,10 +9,10 @@ import static org.hamcrest.Matchers.not;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.AuthorizationPage;
-import pages.ControlPanelPage;
-import pages.NewsCreationAndEditingPage;
-import pages.NewsPage;
+import pages.AuthorizationSteps;
+import pages.ControlPanelSteps;
+import pages.NewsCreationAndEditingSteps;
+import pages.NewsSteps;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
@@ -36,11 +36,11 @@ public class NewsCreationTests {
     public void logIn() throws InterruptedException {
         Thread.sleep(7000);
         try {
-            AuthorizationPage.isAuthorizationScreen();
+            AuthorizationSteps.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
             return;
         }
-        AuthorizationPage.logIn("login2", "password2");
+        AuthorizationSteps.logIn("login2", "password2");
     }
 
     @Test // БАГ!!!!!!!
@@ -57,12 +57,12 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory, description);
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkNewsData(chosenCategory, description);
     }
 
     @Test // тест проходит на эмуляторе (даже с удалением), нестабильный при запуске всех тестов
@@ -79,15 +79,15 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory, description);
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkNewsData(chosenCategory, description);
         // удаление новости
-        NewsPage.goToEditingModeForNews();
-        NewsPage.deleteNews(chosenCategory);
+        NewsSteps.goToEditingModeForNews();
+        NewsSteps.deleteNews(chosenCategory);
     }
 
     @Test  // БАГ!!! Новость не появляется в блоке новостей
@@ -105,15 +105,15 @@ public class NewsCreationTests {
         String emptyDescription = "no";
         String description = "New description";
         // будет введено время: 02:23 (заложено в методе, также в методе есть проверка, что введено именно это время)
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkNewsData(chosenCategory, description);
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkNewsData(chosenCategory, description);
         // удаление новости
-        NewsPage.goToEditingModeForNews();
-        NewsPage.deleteNews(chosenCategory);
+        NewsSteps.goToEditingModeForNews();
+        NewsSteps.deleteNews(chosenCategory);
     }
 
     @Test  // не самый стабильный тест
@@ -130,12 +130,12 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.сancelSavingNews();
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.checkThatNewsDoesNotExist(chosenCategory, description);
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.сancelSavingNews();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.checkThatNewsDoesNotExist(chosenCategory, description);
     }
 
     @Test
@@ -152,13 +152,11 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        NewsCreationAndEditingSteps.checkMessageThatFieldShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -175,13 +173,11 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "yes";
         String description = "no";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        NewsCreationAndEditingSteps.checkMessageThatFieldShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -198,13 +194,11 @@ public class NewsCreationTests {
         String saveOrCancelTime = "save";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        NewsCreationAndEditingSteps.checkMessageThatFieldShouldBeFilled(activityTestRule);
     }
 
     @Test
@@ -212,10 +206,10 @@ public class NewsCreationTests {
     public void shouldInputMoreThan24HoursWhenNewsIsBeingCreated() {
         String invalidHours = "76";
         String validMinutes = "23";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.timeInput(invalidHours, validMinutes);
-        NewsCreationAndEditingPage.checkMessageOfTimeInputError();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.timeInput(invalidHours, validMinutes);
+        NewsCreationAndEditingSteps.checkMessageOfTimeInputError();
     }
 
     @Test
@@ -223,10 +217,10 @@ public class NewsCreationTests {
     public void shouldInputMoreThan60MinutesWhenNewsIsBeingCreated() {
         String validHours = "22";
         String invalidMinutes = "68";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.timeInput(validHours, invalidMinutes);
-        NewsCreationAndEditingPage.checkMessageOfTimeInputError();
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.timeInput(validHours, invalidMinutes);
+        NewsCreationAndEditingSteps.checkMessageOfTimeInputError();
     }
 
     @Test
@@ -243,13 +237,11 @@ public class NewsCreationTests {
         String saveOrCancelTime = "cancel";
         String emptyDescription = "no";
         String description = "New description";
-        ControlPanelPage.goToNewsBlock();
-        NewsPage.initiateTheCreationOfNews();
-        NewsCreationAndEditingPage.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
-        NewsCreationAndEditingPage.saveNews();
-        onView(withText(R.string.empty_fields))
-                .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
-                        .getDecorView())))).check(matches(withText("Fill empty fields")));
+        ControlPanelSteps.goToNewsBlock();
+        NewsSteps.initiateTheCreationOfNews();
+        NewsCreationAndEditingSteps.fillInTheNewsFields(emptyCategory, withCategoryChoice, chosenCategory, category, title, emptyDate, emptyTime, withDialPadOrTextInput, saveOrCancelTime, emptyDescription, description);
+        NewsCreationAndEditingSteps.saveNews();
+        NewsCreationAndEditingSteps.checkMessageThatFieldShouldBeFilled(activityTestRule);
     }
 
 }
